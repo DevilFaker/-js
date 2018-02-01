@@ -21,7 +21,8 @@
 			<button onclick="shift()">左侧出</button>
 			<button onclick="pop()">右侧出</button>
 </div>
-<div id='2'>
+
+<div id='2' >
 	
 
 </div>
@@ -30,10 +31,12 @@
 	var a=[];
     var c=document.getElementById('1');
     var showSpace=document.getElementById("2");
+
+
 	function unshift(){
     b=c.value;
     a.unshift(b);
-    d();
+    print(a);
     c.value="";
 
 	}
@@ -41,31 +44,39 @@
     function shift(){
     	b=c.value;
 	a.shift(b);
-		d();
+		print(a);
 		c.value="";
 	}
+
 	function pop(){
 		b=c.value;
 	a.pop(b);	
-	d();
+	print(a);
 	c.value="";
 	}
+
+
 	function push(){
 		b=c.value;
 	a.push(b);
-	d();
+	print(a);
 	c.value="";
 	}
 
-	function d(){
-      
-      var line=document.createElement("div");
 
-      for(i=0;i<a.length;i++){
+     
+
+	function print(array){
+
+    var line=document.createElement("div");
+
+      for(i=0;i<array.length;i++){
 
 
 
       div=document.createElement("span");
+
+      div.class="square";
 
       div.style.width="30px";
 
@@ -85,14 +96,12 @@
 
 
 
-      }
 
-     showSpace.innerHTML=""; 
+	}
+
+	 showSpace.innerHTML=""; 
 
      showSpace.appendChild(line);
-
-	
-
 
 	}
 </script>
