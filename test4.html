@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+
+
+	</title>
+</head>
+<body>
+	<style type="text/css">
+
+
+
+
+	</style>
+<div>
+			<input type="number" name="number"  id="1" >
+			<button onclick="unshift()">左侧入</button>
+			<button onclick="push()">右侧入</button>
+			<button onclick="shift()">左侧出</button>
+			<button onclick="pop()">右侧出</button>
+</div>
+<div id='2'>
+	
+
+</div>
+</body>
+<script type="text/javascript">
+	var a=[];
+    var c=document.getElementById('1');
+    var showSpace=document.getElementById("2");
+	function unshift(){
+    b=c.value;
+    a.unshift(b);
+    d();
+    c.value="";
+
+	}
+
+    function shift(){
+    	b=c.value;
+	a.shift(b);
+		d();
+		c.value="";
+	}
+	function pop(){
+		b=c.value;
+	a.pop(b);	
+	d();
+	c.value="";
+	}
+	function push(){
+		b=c.value;
+	a.push(b);
+	d();
+	c.value="";
+	}
+
+	function d(){
+      
+      var line=document.createElement("div");
+
+      for(i=0;i<a.length;i++){
+
+
+
+      div=document.createElement("span");
+
+      div.style.width="30px";
+
+      div.style.height="30px";
+
+      div.style.backgroundColor="red";
+
+      div.style.color="white";
+
+      div.style.margin="5px";
+
+      div.id="i";
+      	
+      div.innerHTML=a[i];
+
+      line.appendChild(div);
+
+
+
+      }
+
+     showSpace.innerHTML=""; 
+
+     showSpace.appendChild(line);
+
+	
+
+
+	}
+</script>
+</html>
