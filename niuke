@@ -1,0 +1,26 @@
+1.
+function mySort(){ 
+var tags = new Array();
+for (i=0;i<arguments.length;i++)
+{tags.push(arguments[i]);  }
+
+tags.sort(function(x,y){return x-y;}) ;  
+return tags; 
+}
+//arguments 的 s ,以及数组方法改变原数列的有：sort,reverse,splice，push,pop,shift,unshift
+//不改变的有：join,concat,slice,toString,toLocaleString,map,fliter
+//sort:1> 默认排序顺序是根据字符串Unicode码点 
+//     2> 一些非英语语言的字符串需要使用 String.localeCompare
+//splice:1>返回总是被删除的数组
+//push,pop,shift,unshift:返回新的数组的长度
+//forEach()不会在迭代之前创建数组的副本
+//map,filter返回的是新数组
+//在string上使用map方法: 
+/*
+var map = Array.prototype.map
+var a = map.call("Hello World", function(x) { 
+  return x.charCodeAt(0); 
+})
+
+复习 str.charCodeAt(index) and String.fromCharCode()
+
