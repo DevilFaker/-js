@@ -52,11 +52,56 @@ for (i=0;i<a;i++){
  
    var b=array.length;
    console.log(array.splice(Math.floor(Math.random()*b),1));
+   }
    
+二 实现栈
+function Stack(){
+    this.dataStore=[];
+    this.top=0;
+    this.push=push;
+    this.pop=pop;
+    this.length=length;
+    this.peek=peek;
+    this.clear=clear;
+    }
 
+function push(element){
+    this.dataStore[this.top++]=element;
 }
 
+function pop(){
+    return this.dataStore[--this.top];
+}
 
+function length(){
+    return this.top;
+}
+
+function peek(){
+    return this.dataStore[this.top-1];
+}
+
+function clear(){
+    this.top=0;
+}
+
+实现数制间的相互转换
+function mulnum(num,base){
+    var a=new Stack();
+    do{
+        a.push(num%base);
+        num=Math.floor(num/base);
+      }
+    while (num>0);
+    var content="";
+    while(a.length()>0){
+    
+    content+=a.pop();
+    
+    }
+
+    return content;
+}
 
 
 
