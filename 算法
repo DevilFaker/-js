@@ -1,0 +1,65 @@
+快速打乱一个数组
+自己的：function randow(a){return a.sort(function(x,y){ if(Math.random()>0.5){return -1; } return 1; })   }；
+=>csdn的： function randow(a){ return a.sort(function(){ return Math.random()-0.5;}) } 
+然而觉得不太乱
+因为第一个数和最后一个数是1/2的几率不变，后面的数是1/4几率不变位置，不太符合随机的定义
+
+关键在于如何把[1,2...N]的数组打乱
+第一步：给1随机分配[1~N]中的一个数
+用[a,b]选择一个数组[1~N]中的数
+数组长度减一，踢出这个数
+第二步给2随机分配一个数
+....
+跟据序号排序
+
+例如：打乱[22,231,31,14,124,123,5,23,56,3,25,123]
+var a=[22,231,31,14,124,123,5,23,56,3,25,123]
+function ran(array){
+var b=array.length;
+var c=[];
+var d=[];
+var f;
+for(i=0;i<b;i++){ c.push(i); }//获得一个[0,...N]的数组
+
+for(i=0;i<b;i++){//循环b次
+
+    f=c.length;//实时获得被踢除元素的数组的长度
+    var e=Math.floor(Math.random()*f);//随机获得一个序列，不能用元素，因为元素剔除后数组会变化
+    var num=c[e];//获得元素
+    d[num]=a[i];
+    var index=c.indexOf(num);//获得被选中的元素索引
+    c.splice(index,1);//剔除元素
+ }
+   
+   return d;
+
+}//zhendeyouchouyouchang
+
+另外扩展（其实在a,b上变化一下就行了）
+[0,1)用Math.random();
+
+以下不包括a=0,b=1
+[a,b] Math.round(Math.random())
+(a,b] Math.ceil(Math.random())
+(a,b) 类似与[a,b]
+//以上鸡肋，才发现！
+
+总结
+在实现随机排序的时候，顺便解决了随机剔除数组
+如果想快速随机剔除数组:
+var a=array.length
+for (i=0;i<a;i++){
+ 
+   var b=array.length;
+   console.log(array.splice(Math.floor(Math.random()*b),1));
+   
+
+}
+
+
+
+
+
+
+
+
