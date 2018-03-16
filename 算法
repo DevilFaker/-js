@@ -103,6 +103,93 @@ function mulnum(num,base){
     return content;
 }
 
+实现二叉树
+function Node(data,left,right){
+    this.data=data;
+    this.left=left;
+    this.right=right;
+    this.show=show;
+}
+
+function show(){
+    return this.data;
+}
+
+function BST(){
+    this.root=null;
+    this.insert=insert;
+    this.inOrder=inOrder;
+}
+
+function insert(data){
+    var n=new Node(data,null,null);
+    if(this.root==null){ 
+        this.root=n; 
+    }
+    else{
+        var curr=this.root;
+        var parent;
+        while(true){
+        parent=curr;
+        if(data<curr.data){
+            curr=curr.left;
+                if(curr==null){
+                parent.left=n;
+                break;
+                }
+            }
+        else{
+            curr=curr.right;
+            if(curr==null){
+                parent.right=n;
+                break;
+            }
+        }
+        }
+    }
+
+} //墙裂建议自己写一遍，很爽
+
+遍历二叉树
+中序：
+function inOrder(node){
+    while(node!=null){
+        inOrder(node.left);
+        putstr(node.show()+" ");
+        inOrder(node.right);
+    }
+
+} //???
+
+先序：
+function preOrder(node){
+    while(node!=null){
+        purstr(node.show()+" ");
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+} //???
+
+后序：
+function postOrder(node){
+    while(node!=null){
+        preOrder(node.right);
+        preOrder(node.left);
+        putstr(node.show()+" ");
+    }
+}//???
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
