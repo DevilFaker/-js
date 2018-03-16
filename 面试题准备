@@ -1,4 +1,4 @@
-js闭包
+素质三连 js闭包 原型链 作用域
 闭包是在某个作用域内定义的函数，它可以访问这个作用域内的所有变量。
 js权威指南：函数对象可以通过作用链相互关联起来，函数体内部的变量都可以保存在函数体内。
 js高程：指有权访问另一个函数作用域中变量的函数
@@ -14,8 +14,87 @@ js函数机制：每次创建函数，会创建一个执行环境和相应的作
 在同一作用链定义了多个闭包，闭包共享同样的私有变量
 关联到闭包作用链域都是活动的，嵌套的函数不会将作用域内的私有变量复制保存一份，也不会对所绑定的变量生成静态快照
 
+闭包作用链域通常包括三部分：
+1.全局作用域
+2.闭包定义时的
+3.函数本身的作用域
+
+如何进行网站优化
+
+
+闭包的应用
+1，创建特权方法用于访问控制
+2，事件处理程序及回调
+
+解决方法：
+因为遮蔽效应（作用域查找会在找到第一个匹配的标识符停止），通过全局对象的属性。
+
 this 是js的关键字，而不是变量
 
+js继承
+sessionStorage,localStorage,cookie区别
+
+js的跨域
+1.文档同源需要满足：协议，端口，域名
+2.什么是跨域通信：在不满足同源条件的两个窗口间进行资源请求操作
+3.怎么跨域：1>log 这种简单通讯，新建<img>,<script>,<link>,<iframe>元素，通过src，href属性设置为目标url。实现跨域请求
+           2>如果请求json数据，使用<script>进行jsonp请求,它的基本思想是，网页通过添加一个<script>元素，向服务器请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来(AJAX)
+           function addScriptTag(url){
+                var script=document.createElement("script");
+                script.setAttribute("type","text/script");
+                script.src=url;
+                document.body.appendChild(script);
+                }
+                
+           window.onload=function(){
+                addScriptTag("example.com?callback=foo");
+           
+           } 
+           
+           function foo(data){
+           
+           alert(data.ip);
+           
+           }
+           
+           
+           3>现代浏览器中多窗口通信使用HTML5规范的targetWindow.postMessage(data, origin);其中data是需要发送的对象，origin是目标窗口的origin。window.addEventListener('message', handler, false);handler的event.data是postMessage发送来的数据，event.origin是发送窗口的origin，event.source是发送消息的窗口引用
+           var a=window.open("example","title");
+           a.postMessage("content","example.com" );
+           
+           
+           4>内部服务器代理请求跨域url，然后返回数据
+           
+           5>跨域请求数据，现代浏览器可使用HTML5规范的CORS功能，只要目标服务器返回HTTP头部**Access-Control-Allow-Origin: ***即可像普通ajax一样访问跨域资源(AJAX)
+           
+           6>一级域名相同，只是二级域名不同的话，浏览器允许document.domain共享cookie,服务器也可以在设置Cookie的时候，指定Cookie的所属域名为一级域名:Set-Cookie: key=value; domain=.example.com; path=/
+           
+           7>对于完全不同源的网站，目前有三种方法，可以解决跨域窗口的通信问题。
+             1>片段识别符（fragment identifier）:.html#fragment的#fragment。如果只是改变片段标识符，页面不会重新刷新。子窗口通过监听hashchange事件得到通知。
+             2>window.name:浏览器窗口有window.name属性。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它;缺点：window.name容量很大，可以放置非常长的字符串；缺点是必须监听子窗口window.name属性的变化，影响网页性能。
+             
+           8>WebSocket是一种通信协议，使用ws://（非加密）和wss://（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。(AJAX)
+           
+           9>jquery ajax：
+$.ajax({
+    url: 'http://www.domain2.com:8080/login',
+    type: 'get',
+    dataType: 'jsonp',  // 请求方式为jsonp
+    jsonpCallback: "onBack",    // 自定义回调函数名
+    data: {}
+});
+
+总结
+   JSONP,postMessage,CORS,webSocket,,jquery ajax,domain,window.name,#,
+ 
+ 
+ jsonp 与 CORS的区别,
+ 1.jsonp 兼容性好，可以向不支持CORS发送信息
+ 2.jsonp 只支持GET，CORS支持所有类型的HTTP
+ 
+ 
+ https://www.cnblogs.com/roam/p/7520433.html
+ 
 你不知道的js：
 变量的赋值操作：
 1>编译器会在当前作用域声明一个变量
