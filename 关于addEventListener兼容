@@ -1,0 +1,12 @@
+function addEvent(type,listener,target){
+    if(target.addEventListener){
+				target.addEventListener(type,listener,false);
+			}
+		target.attachEvent("on"+type,function(event){
+				return handler.call(target,event);
+			})	
+  	}
+		
+function handler(event){
+		event=event||window.event;
+}		
